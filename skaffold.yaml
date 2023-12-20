@@ -1,0 +1,17 @@
+apiVersion: skaffold/v4beta8
+kind: Config
+manifests:
+  rawYaml:
+    - ./infra/k8s/*
+build:
+  googleCloudBuild:
+    projectId: ticketing-microservices-408609
+  artifacts:
+    - image: gcr.io/ticketing-microservices-408609/auth
+      context: auth
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
