@@ -1,6 +1,6 @@
 import express from 'express';
 const router=express.Router();
-router.get('/signout', (req, res) => {
+router.post('/signout', (req, res) => {
 
 });
 

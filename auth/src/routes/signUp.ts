@@ -1,9 +1,11 @@
 import express,{Request,Response} from 'express';
 import  { StatusCodes } from "http-status-codes";
 const router=express.Router();
+import {User} from "../models/user"
 import {body,validationResult} from 'express-validator';
 import {RequestValidationError} from "../errors/request-validation-error";
-router.get('/signup',[body('email').toLowerCase().isEmail().withMessage(
+import {BadRequestError} from "../errors/bad-request-error";
+router.post('/signup',[body('email').toLowerCase().isEmail().withMessage(
     "Please enter a valid email address"
 ),body('password').trim().isLength({min:6,max:20}).withMessage("Password must have at least 6 characters and must not have more than 20 characters"
 )],async (req:Request, res:Response) => {
@@ -13,13 +15,20 @@ router.get('/signup',[body('email').toLowerCase().isEmail().withMessage(
        throw new RequestValidationError(errors.array());
     }
     
-    const {email,password} = req.body;
+    const  email:string=req.body.email;
+    const  password:string=req.body.password;
    if(!email || typeof email !== "string" )
    {
-      res.status(StatusCodes.BAD_REQUEST).send("Please provide a valid email address");
+      throw new BadRequestError("Please enter a valid email address")
    }
-   
-
+   const userExists=await User.findOne({email});
+   if(userExists)
+   {
+     throw new BadRequestError("Email already in use");
+   }
+   const user=User.build({email,password});
+   await user.save();
+   res.status(StatusCodes.CREATED).json({result:user});
 });
 
 export {router as SignUpRouter};
