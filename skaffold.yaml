@@ -5,9 +5,9 @@ manifests:
     - ./infra/k8s/*
 build:
   googleCloudBuild:
-    projectId: ticketing-microservices-408609
+    projectId: ticketing-app-408720
   artifacts:
-    - image: gcr.io/ticketing-microservices-408609/auth
+    - image: gcr.io/ticketing-app-408720/auth
       context: auth
       docker:
         dockerfile: Dockerfile

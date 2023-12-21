@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: auth
-          image:  gcr.io/ticketing-microservices-408609/auth
+          image:  gcr.io/ticketing-app-408720/auth
 ---
 apiVersion: v1
 kind: Service
