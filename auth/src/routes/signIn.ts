@@ -33,7 +33,7 @@ router.post('/signin',[body('email').toLowerCase().isEmail().withMessage(
    req.session={jwt:userJWT};
 
 
-   res.status(StatusCodes.CREATED).json({result:user});
+   res.status(StatusCodes.OK).json({result:user});
 });
 
 export {router as SignInRouter};
