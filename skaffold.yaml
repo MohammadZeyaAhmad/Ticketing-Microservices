@@ -15,3 +15,11 @@ build:
         manual:
           - src: 'src/**/*.ts'
             dest: .
+    - image: gcr.io/ticketing-app-408720/client
+      context: client
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'client/**/*.js'
+            dest: .
