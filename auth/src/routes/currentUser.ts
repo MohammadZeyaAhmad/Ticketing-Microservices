@@ -1,7 +1,7 @@
 import express,{Request,Response} from 'express';
 import  { StatusCodes } from "http-status-codes";
-import { currentUser } from '../middlewares/current-user';
-import { requireAuth } from '../middlewares/require-user';
+import { currentUser } from '@tixter/common';
+
 const router=express.Router();
 router.get('/current',currentUser,(req:Request, res:Response) => {
   

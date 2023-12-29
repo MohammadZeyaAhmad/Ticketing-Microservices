@@ -5,8 +5,8 @@ import { CurrentUserRouter } from './routes/currentUser';
 import { SignInRouter} from './routes/signIn';
 import {SignOutRouter } from './routes/signOut';
 import { SignUpRouter } from './routes/signUp';
-import { errorHandler } from './middlewares/error-handler';
-import { NotFoundError } from './errors/not-found-error';
+import { errorHandler,NotFoundError } from '@tixter/common';
+
 import cookieSession  from 'cookie-session';
 const app = express();
 app.set('trust proxy', true);

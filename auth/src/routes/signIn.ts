@@ -4,8 +4,7 @@ const router=express.Router();
 import jwt from 'jsonwebtoken';
 import {User} from "../models/user"
 import {body} from 'express-validator';
-import { validateRequest } from '../middlewares/validate-request';
-import {BadRequestError} from "../errors/bad-request-error";
+import { validateRequest ,BadRequestError} from '@tixter/common';
 import { Password } from '../services/password';
 router.post('/signin',[body('email').toLowerCase().isEmail().withMessage(
     "Please enter a valid email address"
