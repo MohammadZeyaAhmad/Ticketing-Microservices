@@ -7,7 +7,7 @@ const start = async () => {
     throw new Error('JWT_SECRET must be defined');
   }
 
-   if (!process.env.MONGO_URI) {
+     if (!process.env.MONGO_URI) {
     throw new Error('MONGO_URI must be defined');
   }
 
