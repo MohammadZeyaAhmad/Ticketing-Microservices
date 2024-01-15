@@ -5,6 +5,7 @@ import {
   NotFoundError,
   requireAuth,
   NotAuthorizedError,
+  BadRequestError
 } from '@tixter/common';
 import { Ticket } from '../models/ticket';
 import {TicketUpdatedPublisher} from '../events/publishers/ticket-updated-publisher';
@@ -28,6 +29,11 @@ router.put(
     if (!ticket) {
       throw new NotFoundError();
     }
+
+    if (ticket.orderId) {
+      throw new BadRequestError('Cannot edit a reserved ticket');
+    }
+
      
     if (ticket.userId !== req.user!.id) {
       throw new NotAuthorizedError();
@@ -45,7 +51,7 @@ router.put(
       userId: ticket.userId,
       version:ticket.version
     });
-    res.status(201).send(ticket);
+    res.status(200).send(ticket);
   }
 );
 
