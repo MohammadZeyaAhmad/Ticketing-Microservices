@@ -2,6 +2,8 @@ name: tests-ticket
 
 on:
   pull_request:
+    paths:
+      - 'ticket/**'
     branches:
       - master
 
